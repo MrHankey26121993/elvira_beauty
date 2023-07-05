@@ -1,0 +1,27 @@
+/** @type {import('tailwindcss').Config} */
+module.exports = {
+  content: [
+    "./components/**/*.{js,vue,ts}",
+    "./layouts/**/*.vue",
+    "./pages/**/*.vue",
+    "./plugins/**/*.{js,ts}",
+    "./nuxt.config.{js,ts}",
+  ],
+  theme: {
+    extend: {
+      colors: {
+        black: '#1b1d21',
+        cream: '#e6936a',
+        gray: {
+          DEFAULT:  '#cdcdce',
+          100: '#ccc',
+          500: '#888'
+        }
+
+
+      }
+    },
+  },
+  plugins: [],
+}
+

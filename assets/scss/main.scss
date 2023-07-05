@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Raleway';
+  src: url("/fonts/Raleway-Light.ttf");
+}
+
+@font-face {
+  font-family: 'BebasNeue';
+  src: url("/fonts/BebasNeue-Regular.ttf");
+}
+
+@layer base {
+  * {
+    font-family: Raleway, serif;
+  }
+
+  nav {
+    ul {
+      li {
+        @apply cursor-pointer hover:text-cream font-bold;
+      }
+    }
+  }
+
+  .logo {
+    @apply uppercase font-bold border border-black flex p-0.5 ;
+    font-family: BebasNeue, serif;
+    letter-spacing: 3px;
+  }
+
+  .section-main {
+    @apply  relative;
+
+    .black_block {
+      @apply md:absolute bg-black  text-white z-10 -bottom-4 md:w-[35rem] w-full overflow-hidden;
+      button {
+        @apply block px-4 py-3 bg-white text-black uppercase font-bold appearance-none tracking-widest w-auto hover:bg-cream hover:text-white;
+      }
+    }
+    .black_block_list {
+      @apply md:absolute bg-black px-8 md:px-16 py-6 md:py-12 text-white z-10 right-0 md:w-1/2 w-full;
+      .list_item {
+        @apply text-2xl uppercase tracking-widest font-bold py-4 border-t border-white flex relative;
+        .list_item__def {
+          @apply absolute w-8 left-4 h-0.5 border border-white top-1/2 -translate-y-1/2;
+        }
+        .list_item__data {
+          @apply pl-16 flex justify-between grow
+        }
+      }
+
+      .list_item:last-child {
+        @apply border-b;
+      }
+    }
+
+    .block_img {
+      @apply md:absolute right-0 bottom-4 top-0 w-full h-full;
+    }
+
+    &.right {
+      @apply lg:ml-16 xl:ml-52 md:h-[85vh];
+
+      .black_block {
+        @apply -left-8;
+      }
+    }
+    &.left {
+      .black_block {
+        @apply right-0 top-0 w-1/2;
+      }
+      .block_img {
+        @apply mr-52;
+      }
+    }
+  }
+
+  .container-chapter {
+    @apply ml-2 md:ml-4 md:p-8 p-4;
+
+    div:before {
+      @apply w-8 md:w-16 absolute bg-gray left-0 top-1/2;
+      content: '';
+      height: 1px;
+    }
+  }
+
+  .container-chapter_right {
+    @apply mr-2 md:mr-4 p-4 md:p-8;
+
+    div:before {
+      @apply w-8 md:w-16 absolute bg-gray right-0 top-1/2;
+      content: '';
+      height: 1px;
+    }
+
+  }
+
+  .list-work {
+    .item-work {
+      @apply col-span-1;
+    }
+    .item-work:nth-child(even) {
+      @apply mt-4;
+    }
+  }
+
+  .price {
+    @apply grid md:grid-cols-7 md:gap-8 gap-4;
+    .price_list {
+      @apply col-span-7 md:col-span-2 flex flex-col md:gap-4 gap-2;
+      .price_cat {
+        @apply text-xl text-gray uppercase tracking-widest text-left md:text-right hover:text-black font-bold;
+        &.active {
+          @apply text-2xl text-black;
+        }
+      }
+    }
+
+    table {
+
+      tr {
+        @apply border border-gray-100 text-gray-500;
+        td:nth-child(1) {
+          @apply p-4;
+        }
+        td:nth-child(2) {
+          @apply w-1/3 text-center border-gray-100 border-l border-r;
+        }
+      }
+    }
+  }
+
+  .hamburger {
+    @apply relative block md:hidden w-8 h-8;
+    span {
+      @apply absolute border border-black rounded-full;
+    }
+    span:nth-child(1) {
+      @apply top-1.5 left-0 right-0;
+    }
+    span:nth-child(2) {
+      @apply top-1/2 w-4/5 right-0 -translate-y-1/2;
+    }
+    span:nth-child(3) {
+      @apply bottom-1.5 left-0 right-0;
+    }
+  }
+
+  .main-tool-bar {
+    height: 7rem;
+    background: red;
+    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    width: 100%;
+    left: 0;
+    top: 0;
+    transition: ease 0.4s;
+    &--scrolled {
+      height: 4.5rem;
+    }
+  }
+}

@@ -1,0 +1,69 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'Raleway';
+  src: url("../../static/fonts/Raleway-Light.ttf");
+}
+
+@font-face {
+  font-family: 'BebasNeue';
+  src: url("../../static/fonts/BebasNeue-Regular.ttf");
+}
+
+@layer base {
+  * {
+    font-family: Raleway, serif;
+    @apply text-base;
+  }
+
+  .logo {
+    @apply uppercase font-bold border border-black flex p-0.5;
+    font-family: BebasNeue, serif;
+  }
+
+  .section-main {
+    @apply h-[45rem] relative;
+
+    .black_block {
+      @apply absolute bg-black px-16 py-12 text-white z-10 -bottom-4 w-[35rem];
+    }
+
+    .block_img {
+      @apply absolute right-0 bottom-4 top-0 w-full h-full;
+      img {
+        @apply h-full ;
+      }
+    }
+
+    &.right {
+      @apply ml-52;
+      .black_block {
+        @apply -left-8;
+      }
+    }
+    &.left {
+      .black_block {
+        @apply right-0 top-0 w-1/2;
+      }
+    }
+  }
+
+  .container-chapter {
+    @apply ml-4 p-8;
+
+    div:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 90px;
+      height: 1px;
+      background: #cdcdce;
+      top: 50%;
+    }
+
+  }
+
+
+}
