@@ -46,8 +46,6 @@
                 </button>
               </div>
             </div>
-
-
           </div>
 
         </div>
@@ -65,34 +63,15 @@
           <img src="/img/service.webp" class="h-auto hidden md:block appearance-none black_image_list" alt="">
 
           <div class="black_block_list flex flex-col p-16 -top-4">
-            <div class="list_item">
-              <div class="list_item__def"></div>
-              <div class="list_item__data">
-                <div>Sourcils</div>
-                <div>+</div>
+            <template v-for="serviceData in service">
+              <div class="list_item">
+                <div class="list_item__def"></div>
+                <div class="list_item__data">
+                  <div>{{ serviceData.name }}</div>
+                  <div>+</div>
+                </div>
               </div>
-            </div>
-            <div class="list_item">
-              <div class="list_item__def"></div>
-              <div class="list_item__data">
-                <div>Eye-liner</div>
-                <div>+</div>
-              </div>
-            </div>
-            <div class="list_item">
-              <div class="list_item__def"></div>
-              <div class="list_item__data">
-                <div>Lèvres</div>
-                <div>+</div>
-              </div>
-            </div>
-            <div class="list_item">
-              <div class="list_item__def"></div>
-              <div class="list_item__data">
-                <div>Traitement des cicatrices</div>
-                <div>+</div>
-              </div>
-            </div>
+            </template>
           </div>
 
         </div>
@@ -239,15 +218,32 @@ export default {
         ScrollTrigger.create({
           trigger: elem,
           markers: true,
-          onEnter: function() { ths.animateFrom(elem) },
-          onEnterBack: function() { ths.animateFrom(elem, -1) },
-          onLeave: function() { ths.hide(elem) } // assure that the element is hidden when scrolled into view
+          onEnter: function () {
+            ths.animateFrom(elem)
+          },
+          onEnterBack: function () {
+            ths.animateFrom(elem, -1)
+          },
+          onLeave: function () {
+            ths.hide(elem)
+          } // assure that the element is hidden when scrolled into view
         })
       })
     }
   },
   created() {
     this.$axios.get('/data');
+  },
+  async asyncData({$axios}) {
+    let service, slides;
+    await $axios.get('/data').then(resp => {
+      service = resp.data.service
+      slides = resp.data.slides
+      console.log(service)
+    });
+    return {
+      service: service, slides: slides
+    }
   },
   methods: {
     animateFrom(elem, direction) {

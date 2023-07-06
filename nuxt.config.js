@@ -3,7 +3,7 @@ export default {
   /*
   ** Headers of the page
   */
-
+  ssr: false,
   proxy: {
     '/api/': {target: 'http://elvira.locl/', changeOrigin: true}
   },
