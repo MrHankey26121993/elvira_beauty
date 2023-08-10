@@ -189,14 +189,15 @@
   }
 }
 
-.list-work {
+
   .slick-slider {
     margin: 1rem;
     .slick-track {
+      @apply m-auto;
       display: flex !important;
       gap: 1rem;
     }
   }
-}
+
 
 

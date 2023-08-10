@@ -93,34 +93,15 @@
     </div>
 
     <section class="container mx-auto">
-      <div class="grid grid-cols-1 gap-8 list-work">
+
         <VueSlickCarousel v-bind="settingsPhoto">
-          <div class="item-work">
-            <img src="/img/work1.jpg" alt="">
-          </div>
-          <div class="item-work">
-            <img src="/img/work1.jpg" alt="">
-          </div>
-          <div class="item-work">
-            <img src="/img/work1.jpg" alt="">
-          </div>
-          <div class="item-work">
-            <img src="/img/work1.jpg" alt="">
-          </div>
-          <div class="item-work">
-            <img src="/img/work1.jpg" alt="">
-          </div>
-          <div class="item-work">
-            <img src="/img/work1.jpg" alt="">
-          </div>
-          <div class="item-work">
-            <img src="/img/work1.jpg" alt="">
-          </div>
-          <div class="item-work">
-            <img src="/img/work1.jpg" alt="">
-          </div>
+          <template v-for="work in works">
+            <div class="item-work">
+              <img :src="$config.url_api + work.img" alt="">
+            </div>
+          </template>
         </VueSlickCarousel>
-        <div class="md:col-span-4 flex mx-auto">
+        <div class=" flex mx-auto">
           <div>
             <button class="bg-black block text-white
               px-4 py-3 text-black uppercase font-bold appearance-none tracking-widest w-auto hover:bg-cream">Показать
@@ -128,7 +109,7 @@
             </button>
           </div>
         </div>
-      </div>
+
     </section>
 
     <div class="container-chapter reveal_title left">
@@ -348,14 +329,15 @@ export default {
   },
 
   async asyncData({$axios}) {
-    let service, slides;
+    let service, slides, works;
     await $axios.get('/data/content').then(resp => {
       service = resp.data.service
       slides = resp.data.slides
+      works = resp.data.works
       console.log(service)
     });
     return {
-      service: service, slides: slides
+      service: service, slides: slides, works: works
     }
   },
   methods: {

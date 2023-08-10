@@ -5,7 +5,7 @@
         <tbody>
         <tr v-for="price in data">
           <td>{{ price.description }}</td>
-          <td>{{ price.price }}{{ price.value }}</td>
+          <td>{{ price.price }}€</td>
         </tr>
         </tbody>
       </table>
@@ -23,7 +23,7 @@
 export default {
   name: "price",
   props: {
-    data: Object,
+    data: Array,
     showData: {
       DEFAULT: true
     }
