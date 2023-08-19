@@ -58,7 +58,8 @@ export default {
     {src: "~/plugins/gsap", ssr: true},
     {src: '~/plugins/slick', mode: 'client'},
     '@/plugins/global',
-    '@/plugins/modal'
+    '@/plugins/modal',
+    '@/plugins/custom-directive',
   ],
 
   gsap: {

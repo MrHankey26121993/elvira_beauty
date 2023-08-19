@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  important: '.site',
   content: [
     "./components/**/*.{js,vue,ts}",
     "./layouts/**/*.vue",
@@ -10,7 +11,10 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        black: '#1b1d21',
+        black:  {
+          DEFAULT: '#1b1d21',
+          500: "#1b1d2180",
+        },
         cream: '#e6936a',
         gray: {
           DEFAULT:  '#cdcdce',

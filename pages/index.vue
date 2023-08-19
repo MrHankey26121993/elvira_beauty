@@ -1,8 +1,8 @@
 <template>
-  <div class="relative overflow-x-hidden">
-    <nav class=" bg-white px-4 fixed z-20 top-0 left-0 right-0 main-tool-bar">
-      <div class="container mx-auto flex justify-between items-center ">
-        <div class="logo text-sm md:text-base">
+  <div class="relative overflow-x-hidden site">
+    <nav class=" bg-white fixed z-20 top-0 left-0 right-0 main-tool-bar">
+      <div class="container mx-auto flex justify-between items-center md:px-4">
+        <div class="ml-4 md:ml-0 logo text-sm md:text-base">
           <span class="md:p-2 px-2 py-1 bg-black text-white ">elvira</span>
           <span class="md:p-2 px-2 py-1">beauty</span>
         </div>
@@ -15,17 +15,27 @@
         </div>
         <div class="gap-4 hidden md:flex items-center">
           <span class="cursor-pointer hover:text-cream font-bold"><span>+37520 - 4342 - 23423</span></span>
-          <button class="bg-cream text-white px-4 py-3 font-bold uppercase tracking-widest">Être rappelé</button>
+          <button @click="openModalApp" class="bg-cream text-white px-4 py-3 font-bold uppercase tracking-widest">Être rappelé</button>
         </div>
 
-        <div class="hamburger">
+        <div @click="openMenu" class="hamburger">
           <span></span>
           <span></span>
           <span></span>
         </div>
-
+        <div class="menu-mobile">
+          <ul class="flex flex-col gap-4">
+            <li>Prestations</li>
+            <li>La galerie</li>
+            <li>Les prix</li>
+          </ul>
+        </div>
       </div>
     </nav>
+
+
+
+
     <section class="md:mt-28 mt-12">
       <div class="section-main right ">
         <VueSlickCarousel v-bind="settingsMainSlide">
@@ -44,7 +54,7 @@
                     {{ slide.description }}
                   </div>
                   <div>
-                    <button class="">
+                    <button class="" @click="openModalApp">
                       Être rappelé
                     </button>
                   </div>
@@ -94,21 +104,22 @@
 
     <section class="container mx-auto">
 
-        <VueSlickCarousel v-bind="settingsPhoto">
-          <template v-for="work in works">
-            <div class="item-work">
-              <img :src="$config.url_api + work.img" alt="">
-            </div>
-          </template>
-        </VueSlickCarousel>
-        <div class=" flex mx-auto">
-          <div>
-            <button class="bg-black block text-white
-              px-4 py-3 text-black uppercase font-bold appearance-none tracking-widest w-auto hover:bg-cream">Показать
-              все
-            </button>
+
+      <VueSlickCarousel v-bind="settingsPhoto">
+        <template v-for="work in works">
+          <div class="item-work">
+            <img :src="$config.url_api + work.img" alt="">
           </div>
+        </template>
+      </VueSlickCarousel>
+      <div class="justify-center flex mx-auto">
+        <div>
+          <button class="bg-black block text-white
+              px-4 py-3 text-black uppercase font-bold appearance-none tracking-widest w-auto hover:bg-cream">Показать
+            все
+          </button>
         </div>
+      </div>
 
     </section>
 
@@ -140,7 +151,9 @@
         <div class=" text-center w-full md:w-[40rem] mx-auto have_quest">
           <div><p class="text-2xl md:text-5xl font-bold">Остались вопросы?</p>
             <p class="text-2xl md:text-5xl font-bold">Оставьте заявку и мы перезвоним</p></div>
-          <button class="bg-black block text-white
+          <button
+            @click="openModalApp"
+            class="bg-black block text-white
               px-4 py-3 text-black uppercase font-bold appearance-none tracking-widest w-auto hover:bg-cream mx-auto mt-4">
             Оставить заявку
           </button>
@@ -151,6 +164,50 @@
     <footer class="py-12 px-6 text-center md:text-left">
       <span class="md:text-base text-sm ">© 2023 Студия перманентного макияжа <br class="block md:hidden"> Elvira Beaty</span>
     </footer>
+
+    <modal name="application" :adaptive="true" height="100%" :scrollable="true">
+      <div class="form">
+        <h1 class="font-bold uppercase text-center">Оставбье заявку</h1>
+        <div class="close" @click="closeModal('application')">
+          <span></span>
+          <span></span>
+        </div>
+        <div class="text-center">Оставьте свои контакты, и я с вами свяжусь.</div>
+        <div class="flex flex-col gap-2">
+          <label>Имя</label>
+          <input type="text">
+        </div>
+        <div class="flex flex-col gap-2">
+          <label>Телефон</label>
+          <input type="text">
+        </div>
+        <div class="flex flex-col gap-2">
+          <label>Email</label>
+          <input type="text">
+        </div>
+        <div class="flex flex-col gap-2">
+          <label>Комментарий</label>
+          <textarea type="text"></textarea>
+        </div>
+
+        <div class="flex gap-4 justify-between"
+             @click="closeModal('application')">
+
+          <button class="block border border-black
+              px-4 py-3 text-black uppercase font-bold appearance-none transition tracking-widest w-auto hover:bg-black hover:text-white mx-auto mt-4">
+            Отменить
+          </button>
+          <button class="bg-black block text-white border border-black
+              px-4 py-3 text-black uppercase font-bold appearance-none transition tracking-widest w-auto hover:bg-cream hover:border-cream  mx-auto mt-4">
+             Отправить
+          </button>
+
+        </div>
+
+
+      </div>
+    </modal>
+
   </div>
 
 </template>
@@ -396,6 +453,18 @@ export default {
 
       }
 
+    },
+    openMenu() {
+      let hamburger = this.$el.querySelector('.hamburger'),
+        menu = this.$el.querySelector('.menu-mobile');
+      hamburger.classList.toggle('active');
+      menu.classList.toggle('active');
+    },
+    openModalApp() {
+      this.$modal.show('application')
+    },
+    closeModal(val) {
+      this.$modal.hide(val)
     }
   },
   comments: {

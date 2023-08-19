@@ -258,6 +258,7 @@ export default {
   name: "index",
   components: {Edit, Price, Remove, Add},
   layout: 'admin',
+  middleware: ['auth'],
   async asyncData({$axios}) {
     let service, slides, works;
     await $axios.get('/data/content').then(resp => {
