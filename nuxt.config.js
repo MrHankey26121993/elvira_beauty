@@ -4,7 +4,7 @@ export default {
   */
   ssr: false,
   proxy: {
-    '/api/': {target: 'http://234615.fornex.cloud/', changeOrigin: true}
+    '/api/': {target: '127.0.0.1', changeOrigin: true}
   },
 
   axios: {
