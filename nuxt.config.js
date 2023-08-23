@@ -4,7 +4,7 @@ export default {
   */
   ssr: false,
   proxy: {
-    '/api/': {target: '127.0.0.1', changeOrigin: true}
+    '/api/': {target: 'http://127.0.0.1/api', changeOrigin: true}
   },
 
   axios: {
