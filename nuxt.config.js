@@ -4,7 +4,7 @@ export default {
   */
   ssr: false,
   proxy: {
-    '/api/': {target: 'http://elvira.locl/', changeOrigin: true}
+    '/api/': {target: 'http://234615.fornex.cloud/', changeOrigin: true}
   },
 
   axios: {
@@ -12,13 +12,13 @@ export default {
   },
 
   privateRuntimeConfig: {
-    url_api: 'http://elvira.locl/',
+    url_api: 'http://234615.fornex.cloud/',
     axios: {
       baseURL: '/'
     }
   },
   publicRuntimeConfig: {
-    url_api: 'http://elvira.locl/',
+    url_api: 'http://234615.fornex.cloud/',
     axios: {
       baseURL: '/api'
     }
@@ -50,6 +50,7 @@ export default {
   */
   css: [
     '@/assets/scss/main.scss'
+    
   ],
   /*
   ** Plugins to load before mounting the App
@@ -86,9 +87,9 @@ export default {
       postcssOptions: {
         plugins: {
           tailwindcss: {},
-          autoprefixer: {}
-        }
-      }
+          autoprefixer: {},
+        },
+      },
     },
     extend(config, ctx) {
     },

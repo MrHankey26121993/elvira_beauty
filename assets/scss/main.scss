@@ -230,44 +230,44 @@
     }
   }
 
-  .site {
-    .vm--container {
-      @media (min-width: 766px) {
-        .vm--modal {
-          left: 0!important;
-          width: 100%!important;
-        }
-      }
-      .vm--modal {
-        @apply bg-black-500 flex items-center justify-center left-0 w-full;
-        .form {
-          @apply relative;
-          @apply p-4 bg-white flex flex-col rounded-md gap-2;
-          label {
-            @apply text-base font-bold;
-          }
-          input, textarea {
-            @apply p-2 border-gray rounded border;
-          }
+  // .site {
+  //   .vm--container {
+  //     @media (min-width: 766px) {
+  //       .vm--modal {
+  //         left: 0!important;
+  //         width: 100%!important;
+  //       }
+  //     }
+  //     .vm--modal {
+  //       @apply bg-black-500 flex items-center justify-center left-0 w-full;
+  //       .form {
+  //         @apply relative;
+  //         @apply p-4 bg-white flex flex-col rounded-md gap-2;
+  //         label {
+  //           @apply text-base font-bold;
+  //         }
+  //         input, textarea {
+  //           @apply p-2 border-gray rounded border;
+  //         }
 
-          .close {
-            @apply absolute right-4 w-6 cursor-pointer;
-            span {
-              @apply absolute left-0 right-0 border border-black;
-            }
-            span:nth-child(1) {
-              @apply -rotate-45 top-4;
-            }
+  //         .close {
+  //           @apply absolute right-4 w-6 cursor-pointer;
+  //           span {
+  //             @apply absolute left-0 right-0 border border-black;
+  //           }
+  //           span:nth-child(1) {
+  //             @apply -rotate-45 top-4;
+  //           }
 
-            span:nth-child(2) {
-              bottom: unset;
-              @apply rotate-45 top-4;
-            }
-          }
-        }
-      }
-    }
-  }
+  //           span:nth-child(2) {
+  //             bottom: unset;
+  //             @apply rotate-45 top-4;
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // }
 }
 
 .slick-slider {
