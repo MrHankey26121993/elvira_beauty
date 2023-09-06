@@ -424,8 +424,8 @@ export default {
     openCollapse(id) {
       let bodyCollapses = this.$el.querySelectorAll('[data-body]')
       bodyCollapses.forEach(item => {
-        console.log(item.dataset.body === id)
-        if(item.dataset.body === id) {
+        console.log(Number(item.dataset.body) === Number(id))
+        if(Number(item.dataset.body) === Number(id)) {
           console.log(item.clientHeight)
           console.log(item.clientHeight === 0)
           console.log(item.clientHeight === '0')
