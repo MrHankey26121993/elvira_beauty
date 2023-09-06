@@ -4,7 +4,7 @@ export default {
   */
   ssr: false,
   proxy: {
-    '/api/': {target: 'http://127.0.0.1/api', changeOrigin: true}
+    '/api/': {target:  process.env.PROXY_URL, changeOrigin: true}
   },
 
   axios: {
@@ -12,13 +12,13 @@ export default {
   },
 
   privateRuntimeConfig: {
-    url_api: 'http://234615.fornex.cloud/',
+    url_api: process.env.URL_API,
     axios: {
       baseURL: '/'
     }
   },
   publicRuntimeConfig: {
-    url_api: 'http://234615.fornex.cloud/',
+    url_api: process.env.URL_API,
     axios: {
       baseURL: '/api'
     }
@@ -50,7 +50,7 @@ export default {
   */
   css: [
     '@/assets/scss/main.scss'
-    
+
   ],
   /*
   ** Plugins to load before mounting the App
