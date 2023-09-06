@@ -51,7 +51,7 @@
         }
 
         .list_item__data {
-          @apply pl-16 flex justify-between grow items-center relative uppercase;
+          @apply pl-16 flex justify-between grow items-center relative uppercase cursor-pointer;
         }
 
         .list_item__desc {

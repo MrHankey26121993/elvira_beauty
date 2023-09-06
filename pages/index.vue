@@ -2,7 +2,7 @@
   <div class="relative overflow-x-hidden site">
     <nav class=" bg-white fixed z-20 top-0 left-0 right-0 main-tool-bar">
       <div class="container mx-auto flex justify-between items-center md:px-4">
-        <div class="ml-4 md:ml-0 logo text-sm md:text-base">
+        <div class="ml-4 md:ml-0 logo text-sm md:text-base cursor-default">
           <span class="md:p-2 px-2 py-1 bg-black text-white ">elvira</span>
           <span class="md:p-2 px-2 py-1">beauty</span>
         </div>
@@ -33,17 +33,16 @@
       </div>
     </nav>
 
-
-
-
     <section class="md:mt-28 mt-12">
       <div class="section-main right ">
         <VueSlickCarousel v-bind="settingsMainSlide">
           <template v-for="slide in slides">
             <div class="block_img">
 
-              <img v-if="$src.isMobile()" :src="$config.url_api + slide.img_mob" class="h-full appearance-none" alt="">
-              <img v-else :src="$config.url_api + slide.img" class="h-full appearance-none float-right" alt="">
+<!--              <img v-if="$src.isMobile()" :src="$config.url_api + slide.img_mob" class="h-full appearance-none" alt="">-->
+<!--              <img v-else :src="$config.url_api + slide.img" class="h-full appearance-none float-right" alt="">-->
+              <img v-if="$src.isMobile()" src="/img/main-mob.webp" class="h-full appearance-none" alt="">
+              <img v-else src="/img/main.webp" class="h-full appearance-none float-right" alt="">
 
               <div class="black_block ">
                 <div class="px-8 bg-black md:px-16 py-6 md:py-12 flex flex-col gap-8">
