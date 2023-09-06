@@ -15,7 +15,9 @@
         </div>
         <div class="gap-4 hidden md:flex items-center">
           <span class="cursor-pointer hover:text-cream font-bold"><span>+37520 - 4342 - 23423</span></span>
-          <button @click="openModalApp" class="bg-cream text-white px-4 py-3 font-bold uppercase tracking-widest">Être rappelé</button>
+          <button @click="openModalApp" class="bg-cream text-white px-4 py-3 font-bold uppercase tracking-widest">Être
+            rappelé
+          </button>
         </div>
 
         <div @click="openMenu" class="hamburger">
@@ -39,8 +41,8 @@
           <template v-for="slide in slides">
             <div class="block_img">
 
-<!--              <img v-if="$src.isMobile()" :src="$config.url_api + slide.img_mob" class="h-full appearance-none" alt="">-->
-<!--              <img v-else :src="$config.url_api + slide.img" class="h-full appearance-none float-right" alt="">-->
+              <!--              <img v-if="$src.isMobile()" :src="$config.url_api + slide.img_mob" class="h-full appearance-none" alt="">-->
+              <!--              <img v-else :src="$config.url_api + slide.img" class="h-full appearance-none float-right" alt="">-->
               <img v-if="$src.isMobile()" src="/img/main-mob.webp" class="h-full appearance-none" alt="">
               <img v-else src="/img/main.webp" class="h-full appearance-none float-right" alt="">
 
@@ -164,7 +166,7 @@
       <span class="md:text-base text-sm ">© 2023 Студия перманентного макияжа <br class="block md:hidden"> Elvira Beaty</span>
     </footer>
 
-    <modal name="application" :adaptive="true" height="100%" :scrollable="true">
+    <modal name="application" :adaptive="true" height="auto" :scrollable="true">
       <div class="form">
         <h1 class="font-bold uppercase text-center">Оставбье заявку</h1>
         <div class="close" @click="closeModal('application')">
@@ -174,31 +176,31 @@
         <div class="text-center">Оставьте свои контакты, и я с вами свяжусь.</div>
         <div class="flex flex-col gap-2">
           <label>Имя</label>
-          <input type="text">
+          <input type="text" v-model="formData.name">
         </div>
         <div class="flex flex-col gap-2">
           <label>Телефон</label>
-          <input type="text">
+          <input type="text" v-model="formData.number">
         </div>
         <div class="flex flex-col gap-2">
           <label>Email</label>
-          <input type="text">
+          <input type="text" v-model="formData.email">
         </div>
         <div class="flex flex-col gap-2">
           <label>Комментарий</label>
-          <textarea type="text"></textarea>
+          <textarea type="text" v-model="formData.comment"></textarea>
         </div>
 
-        <div class="flex gap-4 justify-between"
-             @click="closeModal('application')">
-
+        <div class="flex gap-4 justify-between">
           <button class="block border border-black
-              px-4 py-3 text-black uppercase font-bold appearance-none transition tracking-widest w-auto hover:bg-black hover:text-white mx-auto mt-4">
+              px-4 py-3 text-black uppercase font-bold appearance-none transition tracking-widest w-auto hover:bg-black hover:text-white mx-auto mt-4"
+                  @click="closeModal('application')">
             Отменить
           </button>
           <button class="bg-black block text-white border border-black
-              px-4 py-3 text-black uppercase font-bold appearance-none transition tracking-widest w-auto hover:bg-cream hover:border-cream  mx-auto mt-4">
-             Отправить
+              px-4 py-3 text-black uppercase font-bold appearance-none transition tracking-widest w-auto hover:bg-cream hover:border-cream  mx-auto mt-4"
+          @click="pushForm()">
+            Отправить
           </button>
 
         </div>
@@ -464,6 +466,9 @@ export default {
     },
     closeModal(val) {
       this.$modal.hide(val)
+    },
+    pushForm() {
+      this.$axios.post('/data/form', this.formData)
     }
   },
   comments: {
@@ -502,6 +507,12 @@ export default {
         dots: true,
         slidesToShow: 1,
         slidesToScroll: 1,
+      },
+      formData: {
+        name: null,
+        number: null,
+        email: null,
+        comment: null
       }
     }
   }
