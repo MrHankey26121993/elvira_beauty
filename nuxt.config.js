@@ -4,7 +4,7 @@ export default {
   */
   ssr: false,
   proxy: {
-    '/api/': {target:  process.env.PROXY_URL, changeOrigin: true}
+    '/api/': {target:  process.env.BASE_URL, changeOrigin: true}
   },
 
   axios: {
@@ -12,13 +12,13 @@ export default {
   },
 
   privateRuntimeConfig: {
-    url_api: process.env.URL_API,
+    url_api: process.env.BASE_URL,
     axios: {
       baseURL: '/'
     }
   },
   publicRuntimeConfig: {
-    url_api: process.env.URL_API,
+    url_api: process.env.BASE_URL,
     axios: {
       baseURL: '/api'
     }
