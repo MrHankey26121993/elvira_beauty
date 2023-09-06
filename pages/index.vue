@@ -424,12 +424,12 @@ export default {
     openCollapse(id) {
       let bodyCollapses = this.$el.querySelectorAll('[data-body]')
       bodyCollapses.forEach(item => {
-        console.log(item.dataset.body)
-        console.log(id)
-        console.log(item.clientHeight)
+
         if (item.dataset.body === id && item.clientHeight === 0) {
           let p = item.querySelector('p'),
             heightP = p.clientHeight;
+
+          console.log(p)
 
           this.$gsap.to(item, {
             height: `${heightP}px`,
