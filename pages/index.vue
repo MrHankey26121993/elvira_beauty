@@ -426,7 +426,7 @@ export default {
       bodyCollapses.forEach(item => {
         console.log(item.dataset.body)
         console.log(id)
-        console.log(item.clientHeight
+        console.log(item.clientHeight)
         if (item.dataset.body === id && item.clientHeight === 0) {
           let p = item.querySelector('p'),
             heightP = p.clientHeight;
