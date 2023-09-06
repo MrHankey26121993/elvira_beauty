@@ -429,16 +429,16 @@ export default {
           let p = item.querySelector('p'),
             heightP = p.clientHeight;
 
-          ths.$gsap.to(item, {
+          this.$gsap.to(item, {
             height: `${heightP}px`,
             duration: 1
           })
-          ths.$gsap.to(item, {
+          this.$gsap.to(item, {
             opacity: 1,
             duration: 0.5
           })
         } else {
-          ths.$gsap.to(item, {
+          this.$gsap.to(item, {
             height: `0px`,
             opacity: 0,
             duration: 0.5
