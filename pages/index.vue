@@ -109,7 +109,7 @@
       <VueSlickCarousel v-bind="settingsPhoto">
         <template v-for="work in works">
           <div class="item-work">
-            <img :src="$config.url_api + work.img" alt="">
+            <img class="aspect-square" src="/img/work1.jpg" alt="">
           </div>
         </template>
       </VueSlickCarousel>
@@ -404,6 +404,9 @@ export default {
       let x = direction * 100;
       if (elem.classList.contains("left")) {
         x = -500;
+      }
+      if (elem.classList.contains("right")) {
+        x = 500;
       }
       let y = 0;
       elem.style.transform = "translate(" + x + "px, " + y + "px)";
