@@ -430,6 +430,11 @@ export default {
         }
       })
     },
+  },
+  created() {
+    if(typeof this.$auth.busy === 'undefined' || this.$auth.busy) {
+      this.$router.push('/login')
+    }
   }
 }
 </script>
