@@ -33,9 +33,7 @@ export default {
   methods: {
     async userLogin() {
       try {
-        await this.$auth.loginWith('cookie', {data: this.login}).then(resp => {
-          console.log(resp)
-        })
+        await this.$auth.loginWith('cookie', {data: this.login})
       } catch (err) {
       }
     }
