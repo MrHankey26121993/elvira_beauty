@@ -11,16 +11,18 @@ module.exports = {
     extend: {
       colors: {
         black:  {
-          DEFAULT: '#141619',
+          DEFAULT: '#1b1d21',
           500: "#1b1d2180",
         },
-        cream: '#ab6e4f',
-        gray: {
-          DEFAULT:  '#999999',
-          100: '#989898',
-          500: '#888'
+        cream: {
+          DEFAULT: '#e6936a',
+          'light': '#bd9c8d'
         },
-        white: '#bebebe'
+        gray: {
+          DEFAULT:  '#cdcdce',
+          100: '#ccc',
+          500: '#888'
+        }
       }
     },
   },

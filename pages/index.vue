@@ -3,8 +3,8 @@
     <nav class="main-tool-bar">
       <div class="container mx-auto flex justify-between items-center md:px-4">
         <div class="ml-4 md:ml-0 logo text-sm md:text-base cursor-default">
-          <span class="md:p-2 px-2 py-1 bg-black text-white ">elvira</span>
-          <span class="md:p-2 px-2 py-1">beauty</span>
+          <span class="md:p-2 px-2 py-1 bg-cream-light text-white ">elvira</span>
+          <span class="md:p-2 px-2 py-1 text-cream-light">beauty</span>
         </div>
         <div class="hidden md:block">
           <ul class="flex gap-4">
@@ -15,7 +15,7 @@
         </div>
         <div class="gap-4 hidden md:flex items-center">
           <span class="cursor-pointer hover:text-cream font-bold"><span>+37520 - 4342 - 23423</span></span>
-          <button @click="openModalApp" class="bg-cream text-white px-4 py-3 font-bold uppercase tracking-widest">Être
+          <button @click="openModalApp" class="bg-cream-light text-white px-4 py-3 font-bold uppercase tracking-widest">Être
             rappelé
           </button>
         </div>
@@ -47,7 +47,7 @@
               <img v-else src="/img/main.webp" class="h-full appearance-none float-right" alt="">
 
               <div class="black_block ">
-                <div class="px-8 bg-black md:px-16 py-6 md:py-12 flex flex-col gap-8">
+                <div class="px-8 bg-cream-light md:px-16 py-6 md:py-12 flex flex-col gap-8">
                   <div class="text-xl md:text-4xl overflow-hidden break-words">
                     {{ slide.title }}
                   </div>
@@ -81,7 +81,6 @@
           <div class="black_block_list flex flex-col p-16 -top-4">
             <template v-for="serviceData in service">
               <div class="list_item flex-wrap">
-
                 <div class="list_item__data" @click="openCollapse(serviceData.id)">
                   <div class="list_item__def"></div>
                   <div class="text-xs md:text-base">{{ serviceData.name }}</div>
@@ -115,7 +114,7 @@
       </VueSlickCarousel>
       <div class="justify-center flex mx-auto">
         <div>
-          <button class="bg-black block text-white
+          <button class="bg-cream-light block text-white
               px-4 py-3 text-black uppercase font-bold appearance-none tracking-widest w-auto hover:bg-cream">Показать
             все
           </button>
@@ -154,7 +153,7 @@
             <p class="text-2xl md:text-5xl font-bold">Оставьте заявку и мы перезвоним</p></div>
           <button
             @click="openModalApp"
-            class="bg-black block text-white
+            class="bg-cream-light block text-white
               px-4 py-3 text-black uppercase font-bold appearance-none tracking-widest w-auto hover:bg-cream mx-auto mt-4">
             Оставить заявку
           </button>
@@ -192,12 +191,12 @@
         </div>
 
         <div class="flex gap-4 justify-between">
-          <button class="block border border-black
-              px-4 py-3 text-black uppercase font-bold appearance-none transition tracking-widest w-auto hover:bg-black hover:text-white mx-auto mt-4"
+          <button class="block border border-cream-light
+              px-4 py-3 text-cream-light uppercase font-bold appearance-none transition tracking-widest w-auto hover:bg-cream hover:text-white mx-auto mt-4"
                   @click="closeModal('application')">
             Отменить
           </button>
-          <button class="bg-black block text-white border border-black
+          <button class="bg-cream-light block text-white border border-cream-light
               px-4 py-3 text-black uppercase font-bold appearance-none transition tracking-widest w-auto hover:bg-cream hover:border-cream  mx-auto mt-4"
           @click="pushForm()">
             Отправить

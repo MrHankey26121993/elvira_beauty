@@ -23,7 +23,7 @@
   }
 
   .logo {
-    @apply uppercase font-bold border border-black flex p-0.5 ;
+    @apply uppercase font-bold border border-cream-light flex p-0.5 ;
     font-family: BebasNeue, serif;
     letter-spacing: 3px;
   }
@@ -39,7 +39,7 @@
     }
 
     .black_block_list {
-      @apply md:absolute bg-black px-4 md:px-16 py-6 md:py-12 text-white z-10 right-0 md:w-1/2 w-full;
+      @apply md:absolute bg-cream-light px-4 md:px-16 py-6 md:py-12 text-white z-10 right-0 md:w-1/2 w-full;
       .list_item {
         @apply tracking-widest font-bold py-4 border-t border-white flex relative ;
         .list_item__def {
