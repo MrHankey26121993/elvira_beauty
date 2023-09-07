@@ -114,6 +114,10 @@ export default {
           type: 'Bearer',
           global: true
         },
+        user: {
+          property: 'response',
+          scope: 'scope'
+        },
         endpoints: {
           login: {url: '/data/login', method: 'post'},
           user: false,

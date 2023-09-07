@@ -34,7 +34,7 @@ export default {
     async userLogin() {
       try {
         await this.$auth.loginWith('cookie', {data: this.login}).then(resp => {
-          this.$router.push('/cp');
+          console.log(resp)
         })
       } catch (err) {
       }

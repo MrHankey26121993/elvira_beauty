@@ -432,9 +432,10 @@ export default {
     },
   },
   created() {
-    if(typeof this.$auth.busy === 'undefined' || this.$auth.busy) {
+    if(!this.$auth.loggedIn) {
       this.$router.push('/login')
     }
+
   }
 }
 </script>

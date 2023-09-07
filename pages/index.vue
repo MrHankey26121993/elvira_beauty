@@ -15,7 +15,8 @@
         </div>
         <div class="gap-4 hidden md:flex items-center">
           <span class="cursor-pointer hover:text-cream font-bold"><span>+37520 - 4342 - 23423</span></span>
-          <button @click="openModalApp" class="bg-cream-light text-white px-4 py-3 font-bold uppercase tracking-widest">Être
+          <button @click="openModalApp"
+                  class="bg-cream-light hover:bg-cream text-white px-4 py-3 font-bold uppercase tracking-widest">Être
             rappelé
           </button>
         </div>
@@ -77,7 +78,8 @@
     <section>
       <div class="section-main section-main__left left">
         <div class="relative">
-          <img src="/img/service.webp" class="brightness-[0.92] h-auto hidden md:block appearance-none black_image_list" alt="">
+          <img src="/img/service.webp" class="brightness-[0.92] h-auto hidden md:block appearance-none black_image_list"
+               alt="">
           <div class="black_block_list flex flex-col p-16 -top-4">
             <template v-for="serviceData in service">
               <div class="list_item flex-wrap">
@@ -134,13 +136,16 @@
         <div class="price p-4 md:p-0">
           <div class="price_list">
             <template v-for="(serviceData, key) in service">
-              <div class="price_cat" :class="{'active': key === selectedPrice }" @click="showPrice(key)">
-                {{ serviceData.name }}
+              <div class="flex gap-4 md:flex-row flex-col">
+                <div class="price_cat" :class="{'active': key === selectedPrice }" @click="showPrice(key)">
+                  {{ serviceData.name }}
+                </div>
+                <price :data="serviceData.price" :ref="`price${serviceData.id}`"></price>
               </div>
             </template>
           </div>
           <template v-for="(serviceData, key) in service">
-            <price v-if="key === selectedPrice" :data="serviceData.price" :ref="`price${serviceData.id}`"></price>
+
           </template>
         </div>
       </div>
@@ -198,7 +203,7 @@
           </button>
           <button class="bg-cream-light block text-white border border-cream-light
               px-4 py-3 text-black uppercase font-bold appearance-none transition tracking-widest w-auto hover:bg-cream hover:border-cream  mx-auto mt-4"
-          @click="pushForm()">
+                  @click="pushForm()">
             Отправить
           </button>
 
@@ -424,7 +429,7 @@ export default {
       let bodyCollapses = this.$el.querySelectorAll('[data-body]')
       bodyCollapses.forEach(item => {
         console.log(Number(item.dataset.body) === Number(id))
-        if(Number(item.dataset.body) === Number(id)) {
+        if (Number(item.dataset.body) === Number(id)) {
           console.log(item.clientHeight)
           console.log(item.clientHeight === 0)
           console.log(item.clientHeight === '0')
