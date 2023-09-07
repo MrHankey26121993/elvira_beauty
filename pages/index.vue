@@ -281,9 +281,6 @@ export default {
           onEnterBack: function () {
             ths.animateFrom(elem, -1)
           },
-          onLeave: function () {
-            ths.hide(elem)
-          } // assure that the element is hidden when scrolled into view
         })
       })
       //Услуги появление картинки
