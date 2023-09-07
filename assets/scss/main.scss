@@ -18,12 +18,8 @@
     @apply appearance-none;
   }
 
-  nav {
-    ul {
-      li {
-        @apply cursor-pointer hover:text-cream font-bold;
-      }
-    }
+  body {
+    @apply bg-white;
   }
 
   .logo {
@@ -192,6 +188,7 @@
   }
 
   .main-tool-bar {
+    @apply bg-white fixed z-20 top-0 left-0 right-0;
     height: 4rem;
     text-align: center;
     display: flex;
@@ -202,6 +199,11 @@
     left: 0;
     top: 0;
     transition: ease 0.4s;
+    ul {
+      li {
+        @apply cursor-pointer hover:text-cream font-bold;
+      }
+    }
   }
   @media (min-width: 766px) {
     .main-tool-bar {

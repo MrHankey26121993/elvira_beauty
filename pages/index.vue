@@ -1,6 +1,6 @@
 <template>
   <div class="relative overflow-x-hidden site">
-    <nav class=" bg-white fixed z-20 top-0 left-0 right-0 main-tool-bar">
+    <nav class="main-tool-bar">
       <div class="container mx-auto flex justify-between items-center md:px-4">
         <div class="ml-4 md:ml-0 logo text-sm md:text-base cursor-default">
           <span class="md:p-2 px-2 py-1 bg-black text-white ">elvira</span>
@@ -77,7 +77,7 @@
     <section>
       <div class="section-main section-main__left left">
         <div class="relative">
-          <img src="/img/service.webp" class="h-auto hidden md:block appearance-none black_image_list" alt="">
+          <img src="/img/service.webp" class="brightness-[0.92] h-auto hidden md:block appearance-none black_image_list" alt="">
           <div class="black_block_list flex flex-col p-16 -top-4">
             <template v-for="serviceData in service">
               <div class="list_item flex-wrap">
