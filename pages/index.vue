@@ -43,7 +43,7 @@
 
               <!--              <img v-if="$src.isMobile()" :src="$config.url_api + slide.img_mob" class="h-full appearance-none" alt="">-->
               <!--              <img v-else :src="$config.url_api + slide.img" class="h-full appearance-none float-right" alt="">-->
-              <img v-if="$src.isMobile()" src="/img/main-mob.webp" class="h-full appearance-none" alt="">
+              <img v-if="$src.isMobile()" src="/img/main-mob.webp" class="appearance-none" alt="">
               <img v-else src="/img/main.webp" class="h-full appearance-none float-right" alt="">
 
               <div class="black_block ">
