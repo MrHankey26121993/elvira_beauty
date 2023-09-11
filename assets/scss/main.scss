@@ -18,6 +18,9 @@
     @apply appearance-none;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
   body {
     @apply bg-white;
   }

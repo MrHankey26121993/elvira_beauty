@@ -92,33 +92,6 @@
       </div>
 
     </section>
-    <div id="prestations" class="container-chapter reveal_title left">
-      <div class="pl-12 md:pl-24 relative">
-        <h1 class="text-2xl md:text-5xl font-bold block">Prestations</h1>
-      </div>
-    </div>
-    <section>
-      <div class="section-main section-main__left left">
-        <div class="relative">
-          <img src="/img/service.webp" class="brightness-[0.92] h-auto hidden md:block appearance-none black_image_list"
-               alt="">
-          <div class="black_block_list flex flex-col p-16 -top-4">
-            <template v-for="serviceData in service">
-              <div class="list_item flex-wrap">
-                <div class="list_item__data" @click="openCollapse(serviceData.id)">
-                  <div class="list_item__def"></div>
-                  <div class="text-xs md:text-base">{{ serviceData.name }}</div>
-                  <div>+</div>
-                </div>
-                <div class="list_item__desc p-4 pb-0 w-full" :data-body="serviceData.id">
-                  <p>{{ serviceData.description }}</p>
-                </div>
-              </div>
-            </template>
-          </div>
-        </div>
-      </div>
-    </section>
 
     <div id="galerie" class="container-chapter_right reveal_title right">
       <div class="md:pr-24 pr-12 relative">
@@ -127,60 +100,16 @@
     </div>
 
     <section class="container mx-auto">
-      <VueSlickCarousel v-bind="settingsPhoto">
+
+      <div class="grid grid-cols-1 md:grid-cols-3 m-4 gap-4">
         <template v-for="work in works">
           <div class="item-work">
             <img class="aspect-square" :src="$config.url_api + work.img" alt="">
           </div>
         </template>
-      </VueSlickCarousel>
-      <div class="justify-center flex mx-auto">
-        <div>
-          <nuxt-link to="/galerie" class="bg-cream-light block text-white
-              px-4 py-3 text-black uppercase font-bold appearance-none tracking-widest w-auto hover:bg-cream">toutes les
-            photos
-          </nuxt-link>
-        </div>
       </div>
 
-    </section>
 
-    <div id="tarifs" class="container-chapter reveal_title left">
-      <div class="pl-12 md:pl-24 relative">
-        <h1 class="text-2xl md:text-5xl font-bold block">Tarifs</h1>
-      </div>
-    </div>
-
-    <section>
-      <div class="container mx-auto">
-        <div class="price p-4 md:p-0">
-          <div class="price_list">
-            <template v-for="(serviceData, key) in service">
-              <div class="flex gap-4 md:flex-row flex-col">
-                <div class="price_cat" :class="{'active': key === selectedPrice }" @click="showPrice(key)">
-                  {{ serviceData.name }}
-                </div>
-                <price :data="serviceData.price" :ref="`price${serviceData.id}`"></price>
-              </div>
-            </template>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="my-16">
-      <div class="container mx-auto">
-        <div class=" text-center w-full md:w-[40rem] mx-auto have_quest">
-          <div><p class="text-2xl md:text-5xl font-bold">Vous aves des questions?</p>
-            <p class="text-2xl md:text-5xl font-bold">Veuillez laisser vos coordonnées pour être rappelé</p></div>
-          <button
-            @click="openModalApp('application')"
-            class="bg-cream-light block text-white
-              px-4 py-3 text-black uppercase font-bold appearance-none tracking-widest w-auto hover:bg-cream mx-auto mt-4">
-            Être contacter
-          </button>
-        </div>
-      </div>
     </section>
 
     <footer class="py-12 px-6 text-center md:text-left">
@@ -228,10 +157,6 @@
 
     <modal name="success" :adaptive="true" height="auto" :scrollable="true">
       <div class="form">
-        <div class="close" @click="closeModal('success')">
-          <span></span>
-          <span></span>
-        </div>
         <div class="text-center">Bonjour, votre demande d'être rappeler a était bien prise en compte. Veuillez patienter
           svp, je vous contacterai au plus vite possible.
           <br>
@@ -241,17 +166,16 @@
     </modal>
 
   </div>
+
 </template>
 
 <script>
-import VueSlickCarousel from 'vue-slick-carousel'
-import 'vue-slick-carousel/dist/vue-slick-carousel.css'
-// optional style for arrows & dots
-import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
-import Price from "@/components/price.vue";
+
+import VueSlickCarousel from "vue-slick-carousel";
 
 export default {
-  components: {Price},
+  name: 'galerie',
+
   mounted() {
     if (process.client) {
       let ScrollTrigger = this.$ScrollTrigger;
@@ -567,6 +491,6 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 
 </style>

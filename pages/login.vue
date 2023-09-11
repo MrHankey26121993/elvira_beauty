@@ -9,7 +9,7 @@
         </div>
         <div class="grid grid-cols-5">
           <label class="col-span-2">Пароль</label>
-          <input class="col-span-3 appearance-none border border-gray rounded px-2" type="text" v-model="login.password"/>
+          <input class="col-span-3 appearance-none border border-gray rounded px-2" type="password" v-model="login.password"/>
         </div>
         <div class="flex justify-center">
           <button class="bg-blue-300 px-3 py-1 rounded" type="submit">Войти</button>
