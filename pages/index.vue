@@ -41,12 +41,8 @@
         <VueSlickCarousel v-bind="settingsMainSlide">
           <template v-for="slide in slides">
             <div class="block_img">
-
-              <!--              <img v-if="$src.isMobile()" :src="$config.url_api + slide.img_mob" class="h-full appearance-none" alt="">-->
-              <!--              <img v-else :src="$config.url_api + slide.img" class="h-full appearance-none float-right" alt="">-->
-              <img v-if="$src.isMobile()" src="/img/main-mob.webp" class="appearance-none" alt="">
-              <img v-else src="/img/main.webp" class="h-full appearance-none float-right" alt="">
-
+              <img v-if="$src.isMobile()" :src="$config.url_api + slide.img_mob" class="h-full appearance-none" alt="">
+              <img v-else :src="$config.url_api + slide.img" class="h-full appearance-none float-right" alt="">
               <div class="black_block ">
                 <div class="px-8 bg-cream-light md:px-16 py-6 md:py-12 flex flex-col gap-8">
                   <div class="text-xl md:text-4xl overflow-hidden break-words">
@@ -62,7 +58,6 @@
                   </div>
                 </div>
               </div>
-
             </div>
           </template>
         </VueSlickCarousel>
@@ -110,7 +105,7 @@
       <VueSlickCarousel v-bind="settingsPhoto">
         <template v-for="work in works">
           <div class="item-work">
-            <img class="aspect-square" src="/img/work1.jpg" alt="">
+            <img class="aspect-square" :src="$config.url_api + work.img" alt="">
           </div>
         </template>
       </VueSlickCarousel>
@@ -144,9 +139,6 @@
               </div>
             </template>
           </div>
-          <template v-for="(serviceData, key) in service">
-
-          </template>
         </div>
       </div>
     </section>
