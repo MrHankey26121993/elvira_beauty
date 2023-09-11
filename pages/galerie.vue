@@ -68,8 +68,8 @@
         <VueSlickCarousel v-bind="settingsMainSlide">
           <template v-for="slide in slides">
             <div class="block_img">
-              <img v-if="$src.isMobile()" :src="$config.url_api + slide.img_mob" class="h-full appearance-none" alt="">
-              <img v-else :src="$config.url_api + slide.img" class="h-full appearance-none float-right" alt="">
+              <img v-if="$src.isMobile()" :src="$config.url_api + slide.img_mob" class=" appearance-none" alt="">
+              <img v-else :src="$config.url_api + slide.img" class=" appearance-none float-right" alt="">
               <div class="black_block ">
                 <div class="px-8 bg-cream-light md:px-16 py-6 md:py-12 flex flex-col gap-8">
                   <div class="text-xl md:text-4xl overflow-hidden break-words">
