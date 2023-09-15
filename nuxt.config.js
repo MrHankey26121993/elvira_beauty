@@ -98,7 +98,7 @@ export default {
     },
     extend(config, ctx) {
     },
-    transpile: ["gsap"]
+    transpile: ["gsap", '@boyuai/vue-clamp', 'resize-detector']
   },
 
   auth: {

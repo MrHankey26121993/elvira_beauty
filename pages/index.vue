@@ -65,26 +65,31 @@
 
     <section class="md:mt-28 mt-12">
       <div class="section-main right ">
-        <VueSlickCarousel v-bind="settingsMainSlide">
-          <template v-for="slide in slides">
-            <div class="block_img">
-              <img v-if="$src.isMobile()" :src="$config.url_api + slide.img_mob" class="appearance-none" alt="">
-              <img v-else :src="$config.url_api + slide.img" class="appearance-none float-right" alt="">
-              <div class="black_block ">
-                <div class="px-8 bg-cream-light md:px-16 py-6 md:py-12 flex flex-col gap-8">
-                  <p v-html="slide.description" class="text-base md:text-xl overflow-hidden break-words line-clamp-7">
-                  </p>
-                  <div>
-                    <button class="" @click="showAll(slide.description)">
-                      description
-                    </button>
+        <client-only>
+          <VueSlickCarousel v-bind="settingsMainSlide">
+            <template v-for="slide in slides">
+              <div class="block_img">
+                <img v-if="$src.isMobile()" :src="$config.url_api + slide.img_mob" class="appearance-none" alt="">
+                <img v-else :src="$config.url_api + slide.img" class="appearance-none float-right" alt="">
+                <div class="black_block ">
+                  <div class="px-8 bg-cream-light md:px-16 py-6 md:py-12 flex flex-col gap-8">
+                    <v-clamp :max-lines="3" >
+                      <p v-html="slide.description"></p>
+
+                    </v-clamp>
+                    <!--                  <p v-html="" class="text-base md:text-xl overflow-hidden break-words"> </p>-->
+
+                    <div>
+                      <button class="" @click="showAll(slide.description)">
+                        description
+                      </button>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </template>
-        </VueSlickCarousel>
-
+            </template>
+          </VueSlickCarousel>
+        </client-only>
       </div>
 
     </section>
@@ -201,7 +206,7 @@
         </div>
         <div class="flex flex-col gap-2">
           <label>Email</label>
-          <input  required type="email" v-model="formData.email">
+          <input required type="email" v-model="formData.email">
         </div>
         <div class="flex flex-col gap-2">
           <label>Votre demande</label>
@@ -242,7 +247,7 @@
           <span></span>
           <span></span>
         </div>
-        <p v-html="contentModal" ></p>
+        <p v-html="contentModal"></p>
       </div>
     </modal>
 
@@ -255,9 +260,10 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 // optional style for arrows & dots
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 import Price from "@/components/price.vue";
+import VClamp from '@boyuai/vue-clamp'
 
 export default {
-  components: {Price},
+  components: {Price, VClamp},
   mounted() {
     if (process.client) {
       let ScrollTrigger = this.$ScrollTrigger;
@@ -416,11 +422,6 @@ export default {
         } // assure that the element is hidden when scrolled into view
       });
 
-      let black_block = this.$el.querySelector('.black_block');
-      let p = black_block.querySelector('p');
-      if(p.textContent.split("\n").length > 8) {
-        this.showBtn = true;
-      }
 
     }
 
@@ -537,7 +538,7 @@ export default {
     }
   },
   comments: {
-    VueSlickCarousel
+    VueSlickCarousel, VClamp
   },
   data() {
     return {
