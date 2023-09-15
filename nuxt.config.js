@@ -4,7 +4,7 @@ export default {
   */
   ssr: false,
   proxy: {
-    '/api/': {target:  process.env.BASE_URL, changeOrigin: true}
+    '/api/': {target: process.env.BASE_URL, changeOrigin: true}
   },
 
   axios: {
@@ -25,11 +25,15 @@ export default {
   },
 
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'Studio Elvira Beauty',
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
-      {hid: 'description', name: 'description', content: process.env.npm_package_description || ''}
+      {
+        hid: 'description', name: 'description', content: '🌟 Réveillez-vous avec du maquillage !  🌟\n' +
+          '\n' +
+          ' Fatigué des routines de maquillage quotidiennes ?  Dites adieu à l\'eye-liner taché, aux sourcils inégaux et à la couleur des lèvres qui s\'estompe !  Découvrez la beauté du maquillage permanent chez Elvira Beauty.'
+      }
     ],
     link: [
       {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}
@@ -59,6 +63,7 @@ export default {
     {src: "~/plugins/gsap", ssr: true},
     {src: '~/plugins/slick', mode: 'client'},
     '@/plugins/global',
+    '@/plugins/vueeditor',
     '@/plugins/modal',
     '@/plugins/custom-directive',
   ],

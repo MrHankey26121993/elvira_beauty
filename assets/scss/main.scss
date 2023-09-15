@@ -68,13 +68,14 @@
     }
 
     &.right {
-      @apply lg:ml-16 xl:ml-52 md:h-[85vh];
+      @apply md:h-[85vh];
 
       .slick-slider {
         @apply m-0;
         .slick-list {
           @apply md:h-[85vh] h-full;
           .slick-track {
+            @apply lg:ml-16 xl:ml-52;
             height: 100%;
           }
         }
@@ -238,6 +239,7 @@
          .vm--modal {
            left: 0!important;
            width: 100%!important;
+           height: auto!important;
          }
        }
        .vm--overlay {

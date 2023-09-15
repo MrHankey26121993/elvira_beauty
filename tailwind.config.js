@@ -23,7 +23,11 @@ module.exports = {
           100: '#ccc',
           500: '#888'
         }
-      }
+      },
+      lineClamp: {
+        8: '8',
+        7: '7',
+      },
     },
   },
   plugins: [],

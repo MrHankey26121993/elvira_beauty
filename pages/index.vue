@@ -72,15 +72,11 @@
               <img v-else :src="$config.url_api + slide.img" class="appearance-none float-right" alt="">
               <div class="black_block ">
                 <div class="px-8 bg-cream-light md:px-16 py-6 md:py-12 flex flex-col gap-8">
-                  <div class="text-xl md:text-4xl overflow-hidden break-words">
-                    {{ slide.title }}
-                  </div>
-                  <div class="text-base md:text-xl overflow-hidden break-words">
-                    {{ slide.description }}
-                  </div>
+                  <p v-html="slide.description" class="text-base md:text-xl overflow-hidden break-words line-clamp-7">
+                  </p>
                   <div>
-                    <button class="" @click="openModalApp('application')">
-                      Être rappelé
+                    <button class="" @click="showAll(slide.description)">
+                      description
                     </button>
                   </div>
                 </div>
@@ -237,6 +233,16 @@
           <br>
           Bonne journée et a bientôt !
         </div>
+      </div>
+    </modal>
+
+    <modal name="content" :adaptive="true" height="auto" :scrollable="true">
+      <div class="form">
+        <div class="close" @click="closeModal('content')">
+          <span></span>
+          <span></span>
+        </div>
+        <p v-html="contentModal" ></p>
       </div>
     </modal>
 
@@ -410,7 +416,14 @@ export default {
         } // assure that the element is hidden when scrolled into view
       });
 
+      let black_block = this.$el.querySelector('.black_block');
+      let p = black_block.querySelector('p');
+      if(p.textContent.split("\n").length > 8) {
+        this.showBtn = true;
+      }
+
     }
+
   },
 
   async asyncData({$axios}) {
@@ -517,6 +530,10 @@ export default {
         block: 'start'
       });
       this.openMenu();
+    },
+    showAll(content) {
+      this.contentModal = content;
+      this.openModalApp('content')
     }
   },
   comments: {
@@ -561,7 +578,9 @@ export default {
         number: null,
         email: null,
         comment: null
-      }
+      },
+      showBtn: false,
+      contentModal: null,
     }
   }
 }

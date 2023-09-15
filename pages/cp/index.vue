@@ -21,10 +21,11 @@
 
           </p>
           <div class="col-span-3 md:col-span-1">
-            <div class="md:text-center font-bold">Заголовок</div>
-            <div>{{ slide.title }}</div>
-            <div class="md:text-center font-bold">Описание</div>
-            <div>{{ slide.description }}</div>
+            <button class="p-2 bg-green-100 border-gray border mb-4" @click="saveText(key)">
+              Сохранить
+            </button>
+            <Vueditor :ref="'slide'"></Vueditor>
+
           </div>
           <div class="col-span-3 md:col-span-1">
             <div class="md:text-center font-bold">Картинка для компьютерной версии</div>
@@ -106,18 +107,6 @@
     <modal name="slide" height="auto" :width="$src.isMobile() ? '100%' : '600px'">
       <div class="flex flex-col gap-4 p-4">
         <h1 class="text-xl font-bold">Новый слайд</h1>
-        <div class="grid grid-cols-5">
-          <label class="md:col-span-2 col-span-5">Заголовов</label>
-          <input v-model="slide.title" class="appearance-none border border-gray rounded px-2 md:col-span-3 col-span-5"
-                 type="text">
-        </div>
-        <div class="grid grid-cols-5">
-          <label class="md:col-span-2 col-span-5">Описание</label>
-          <textarea v-model="slide.description"
-                    rows="4"
-                    class="appearance-none border border-gray rounded px-2 md:col-span-3 col-span-5"
-                    type="text"></textarea>
-        </div>
         <div class="grid grid-cols-5">
           <label class="md:col-span-2 col-span-5">Порядок</label>
           <input type="number" v-model="slide.order"
@@ -430,12 +419,23 @@ export default {
         }
       })
     },
+    saveText(key) {
+      this.slide = this.slides[key];
+      this.slide.description =this.$refs['slide'][key].getContent();
+      this.pushSlide();
+
+    }
   },
   created() {
     if(!this.$auth.loggedIn) {
       this.$router.push('/login')
     }
 
+  },
+  mounted() {
+    this.$refs['slide'].forEach((editor, key) => {
+      editor.setContent(this.slides[key].description)
+    })
   }
 }
 </script>
