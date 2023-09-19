@@ -3,24 +3,25 @@ export default {
   ** Headers of the page
   */
   ssr: false,
-  proxy: {
-    '/api/': {target: process.env.BASE_URL, changeOrigin: true}
-  },
-
+  // proxy: {
+  //   '/api/': {target: process.env.BASE_URL, changeOrigin: true}
+  // },
+  //
   axios: {
-    proxy: true,
+    proxy: false,
+    baseURL: process.env.BASE_URL + 'api', // Used as fallback if no runtime config is provided
   },
 
   privateRuntimeConfig: {
     url_api: process.env.BASE_URL,
     axios: {
-      baseURL: '/'
+      baseURL: process.env.BASE_URL + 'api'
     }
   },
   publicRuntimeConfig: {
     url_api: process.env.BASE_URL,
     axios: {
-      baseURL: '/api'
+      baseURL: process.env.BASE_URL + 'api'
     }
   },
 
