@@ -492,7 +492,10 @@ export default {
   },
   mounted() {
     this.$refs['slide'].forEach((editor, key) => {
-      editor.setContent(this.slides[key].description)
+      if(this.slides[key].description) {
+        this.$refs['slide'][key].setContent(this.slides[key].description)
+      }
+     console.log(editor.getContent())
     })
   }
 }

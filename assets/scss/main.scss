@@ -64,7 +64,7 @@
     }
 
     .block_img {
-      @apply md:absolute right-0 bottom-4 top-0 w-full h-full;
+      @apply md:relative right-0 bottom-4 top-0 w-full h-full;
     }
 
     &.right {
@@ -75,7 +75,12 @@
         .slick-list {
           @apply md:h-[85vh] h-full;
           .slick-track {
-            @apply lg:ml-16 xl:ml-52;
+
+            .slick-slide {
+              @apply lg:ml-16 xl:ml-52;
+              display: flex !important;
+              justify-content: end;
+            }
             height: 100%;
           }
         }

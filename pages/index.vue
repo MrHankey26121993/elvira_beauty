@@ -557,10 +557,13 @@ export default {
       },
       selectedPrice: 0,
       settingsMainSlide: {
-        arrows: true,
-        dots: true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
+        "dots": true,
+        "dotsClass": "slick-dots custom-dot-class",
+        "edgeFriction": 0.35,
+        "infinite": false,
+        "speed": 500,
+        "slidesToShow": 1,
+        "slidesToScroll": 1
       },
       formData: {
         name: null,
