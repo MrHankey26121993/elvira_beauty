@@ -101,6 +101,10 @@ export default {
     transpile: ["gsap", '@boyuai/vue-clamp', 'resize-detector']
   },
 
+  gtm: {
+    id: 'G-355K9CC0PT'
+  },
+
   auth: {
     redirect: {
       login: '/login',
