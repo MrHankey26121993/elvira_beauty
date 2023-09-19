@@ -69,8 +69,8 @@
           <VueSlickCarousel v-bind="settingsMainSlide">
             <template v-for="slide in slides">
               <div class="block_img">
-                <img v-if="$src.isMobile()" :src="$config.url_api + slide.img_mob" class="appearance-none" alt="">
-                <img v-else :src="$config.url_api + slide.img" class="appearance-none float-right" alt="">
+                <img v-if="$src.isMobile()" :src="process.env.BASE_URL + slide.img_mob" class="appearance-none" alt="">
+                <img v-else :src="process.env.BASE_URL + slide.img" class="appearance-none float-right" alt="">
                 <div class="black_block ">
                   <div class="px-8 bg-cream-light md:px-16 py-6 md:py-12 flex flex-col overflow-hidden gap-8">
                     <p v-html="slide.description" class="h-[15rem] text-base md:text-xl overflow-auto break-words"></p>
@@ -96,7 +96,7 @@
       <div class="grid grid-cols-1 md:grid-cols-3 m-4 gap-4">
         <template v-for="work in works">
           <div class="item-work">
-            <img class="aspect-square" :src="$config.url_api + work.img" alt="">
+            <img class="aspect-square" :src="process.env.BASE_URL + work.img" alt="">
           </div>
         </template>
       </div>

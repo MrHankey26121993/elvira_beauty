@@ -30,13 +30,13 @@
           <div class="col-span-3 md:col-span-1">
             <div class="md:text-center font-bold">Картинка для компьютерной версии</div>
             <div>
-              <img class="h-80 m-auto" :src="$config.url_api + slide.img" alt="">
+              <img class="h-80 m-auto" :src="process.env.BASE_URL + slide.img" alt="">
             </div>
           </div>
           <div class="col-span-3 md:col-span-1">
             <div class="md:text-center font-bold">Картинка для мобильной версии</div>
             <div>
-              <img class="h-80 m-auto" :src="$config.url_api + slide.img_mob" alt="">
+              <img class="h-80 m-auto" :src="process.env.BASE_URL + slide.img_mob" alt="">
             </div>
           </div>
         </div>
@@ -98,7 +98,7 @@
               <remove/>
             </button>
           </div>
-          <img class="aspect-square" :src="$config.url_api + work.img" alt="">
+          <img class="aspect-square" :src="process.env.BASE_URL + work.img" alt="">
 
         </div>
       </template>
@@ -401,20 +401,20 @@ export default {
     getSrc(type) {
       if (type === 'desk') {
         if (this.slide.img.includes('uploads')) {
-          return this.$config.url_api + this.slide.img;
+          return this.process.env.BASE_URL + this.slide.img;
         } else {
           return this.slide.img;
         }
       }
       if(type === 'mob') {
         if (this.slide.img_mob.includes('uploads')) {
-          return this.$config.url_api + this.slide.img_mob;
+          return this.process.env.BASE_URL + this.slide.img_mob;
         } else {
           return this.slide.img_mob;
         }
       } else if(type === 'work') {
         if (this.work.img.includes('uploads')) {
-          return this.$config.url_api + this.work.img;
+          return this.process.env.BASE_URL + this.work.img;
         } else {
           return this.work.img;
         }
