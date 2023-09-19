@@ -15,7 +15,7 @@
             <button class="p-2 bg-green-100 border-gray border rounded-full" @click="editSlide(slide)">
               <edit/>
             </button>
-            <button class="p-2 bg-rose-50 border-gray border rounded-full" @click="removeSlide(slide.id, key)">
+            <button class="p-2 bg-rose-50 border-gray border rounded-full" @click="deleteData('slide', slide.id, key)">
               <remove/>
             </button>
 
@@ -58,10 +58,10 @@
             <span class="font-bold">{{ serviceData.name }}</span>
             <div class="flex gap-4">
               <button class="p-2 bg-rose-50 border-gray border rounded-full"
-                      @click="removeService(serviceData.id, key)">
+                      @click="deleteData('service', serviceData.id, key)">
                 <remove/>
               </button>
-              <button class="p-2 bg-green-100 border-gray border rounded-full" @click="editService(serviceData, key)">
+              <button class="p-2 bg-green-100 border-gray border rounded-full"  @click="editService(serviceData, key)">
                 <edit/>
               </button>
             </div>
@@ -94,7 +94,7 @@
             <button class="p-2 bg-green-100 border-gray border rounded-full" @click="editWork(work)">
               <edit/>
             </button>
-            <button class="p-2 bg-rose-50 border-gray border rounded-full" @click="removeWork(work.id, key)">
+            <button class="p-2 bg-rose-50 border-gray border rounded-full" @click="deleteData('work', work.id, key)">
               <remove/>
             </button>
           </div>
@@ -159,7 +159,7 @@
 
         <div>
           <span>Цены</span>
-          <template v-for="price in serviceModel.price">
+          <template v-for="(price, key) in serviceModel.price">
             <div class="flex gap-4 items-center mb-2">
               <div>
                 <label for="">Название</label>
@@ -171,7 +171,9 @@
                 <input class="appearance-none border border-gray rounded px-2 md:col-span-3 col-span-5"
                        v-model="price.price"/>
               </div>
-              <remove/>
+              <button @click="removePrice(key)">
+                <remove/>
+              </button>
             </div>
           </template>
           <hr class="my-2">
@@ -206,6 +208,23 @@
           <button class="bg-blue-300 px-3 py-1 rounded" @click="pushWork()">
             <template v-if="slide.id">Сохранить</template>
             <template v-else>Создать</template>
+          </button>
+        </div>
+      </div>
+    </modal>
+    <modal name="delete" height="auto" width="300">
+      <div class="p-4">
+        <div class="text-center">
+          Вы действительно хотите удалить {{getDeleteType()}}?
+
+        </div>
+
+        <div class="flex justify-center gap-4">
+          <button class="bg-red-300 px-3 py-1 rounded" @click="$modal.hide('delete')">
+            Нет
+          </button>
+          <button class="bg-blue-300 px-3 py-1 rounded" @click="pushDelete()">
+            Да
           </button>
         </div>
       </div>
@@ -265,6 +284,9 @@ export default {
       serviceModel: new Service(),
       priceModel: new PriceModel(),
       work: new Work(),
+      deleteId: null,
+      deleteType: null,
+      deleteKey: null,
     }
   },
   methods: {
@@ -310,6 +332,11 @@ export default {
       });
     },
     pushService() {
+      this.serviceModel.price.forEach((item, key) => {
+        if(!item.price || !item.description) {
+          this.serviceModel.price.splice(key, 1);
+        }
+      })
       this.$axios.post('data/service', this.serviceModel).then(resp => {
         if (typeof this.serviceModel.id !== 'undefined') {
           this.service.forEach((item, key) => {
@@ -424,6 +451,37 @@ export default {
       this.slide.description =this.$refs['slide'][key].getContent();
       this.pushSlide();
 
+    },
+    deleteData(type, id, key) {
+      this.deleteType = type;
+      this.deleteId = id;
+      this.deleteKey = key;
+      this.$modal.show('delete')
+    },
+    getDeleteType() {
+      if(this.deleteType === 'slide') {
+        return 'слайд';
+      }
+      if(this.deleteType === 'service') {
+        return 'категорию'
+      }
+      if(this.deleteType === 'work') {
+        return 'фото'
+      }
+    },
+    pushDelete() {
+      if(this.deleteType === 'slide') {
+        this.removeSlide(this.deleteId, this.deleteKey)
+      }
+      if(this.deleteType === 'service') {
+        this.removeService(this.deleteId, this.deleteKey)
+      }
+      if(this.deleteType === 'work') {
+        this.removeWork(this.deleteId, this.deleteKey)
+      }
+    },
+    removePrice(key) {
+      this.serviceModel.price.splice(key, 1);
     }
   },
   created() {

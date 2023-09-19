@@ -65,29 +65,21 @@
 
     <section class="md:mt-28 mt-12">
       <div class="section-main right ">
-        <VueSlickCarousel v-bind="settingsMainSlide">
-          <template v-for="slide in slides">
-            <div class="block_img">
-              <img v-if="$src.isMobile()" :src="$config.url_api + slide.img_mob" class=" appearance-none" alt="">
-              <img v-else :src="$config.url_api + slide.img" class=" appearance-none float-right" alt="">
-              <div class="black_block ">
-                <div class="px-8 bg-cream-light md:px-16 py-6 md:py-12 flex flex-col gap-8">
-                  <div class="text-xl md:text-4xl overflow-hidden break-words">
-                    {{ slide.title }}
-                  </div>
-                  <div class="text-base md:text-xl overflow-hidden break-words">
-                    {{ slide.description }}
-                  </div>
-                  <div>
-                    <button class="" @click="openModalApp('application')">
-                      Être rappelé
-                    </button>
+        <client-only>
+          <VueSlickCarousel v-bind="settingsMainSlide">
+            <template v-for="slide in slides">
+              <div class="block_img">
+                <img v-if="$src.isMobile()" :src="$config.url_api + slide.img_mob" class="appearance-none" alt="">
+                <img v-else :src="$config.url_api + slide.img" class="appearance-none float-right" alt="">
+                <div class="black_block ">
+                  <div class="px-8 bg-cream-light md:px-16 py-6 md:py-12 flex flex-col overflow-hidden gap-8">
+                    <p v-html="slide.description" class="h-[15rem] text-base md:text-xl overflow-auto break-words"></p>
                   </div>
                 </div>
               </div>
-            </div>
-          </template>
-        </VueSlickCarousel>
+            </template>
+          </VueSlickCarousel>
+        </client-only>
 
       </div>
 

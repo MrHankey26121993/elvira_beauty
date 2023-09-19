@@ -72,18 +72,8 @@
                 <img v-if="$src.isMobile()" :src="$config.url_api + slide.img_mob" class="appearance-none" alt="">
                 <img v-else :src="$config.url_api + slide.img" class="appearance-none float-right" alt="">
                 <div class="black_block ">
-                  <div class="px-8 bg-cream-light md:px-16 py-6 md:py-12 flex flex-col gap-8">
-                    <v-clamp :max-lines="3" >
-                      <p v-html="slide.description"></p>
-
-                    </v-clamp>
-                    <!--                  <p v-html="" class="text-base md:text-xl overflow-hidden break-words"> </p>-->
-
-                    <div>
-                      <button class="" @click="showAll(slide.description)">
-                        description
-                      </button>
-                    </div>
+                  <div class="px-8 bg-cream-light md:px-16 py-6 md:py-12 flex flex-col overflow-hidden gap-8">
+                    <p v-html="slide.description" class="h-[15rem] text-base md:text-xl overflow-auto break-words"></p>
                   </div>
                 </div>
               </div>
@@ -422,9 +412,7 @@ export default {
         } // assure that the element is hidden when scrolled into view
       });
 
-
     }
-
   },
 
   async asyncData({$axios}) {
