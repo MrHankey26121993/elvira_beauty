@@ -43,18 +43,15 @@
             <li @click="pushTo('#galerie')">La galerie</li>
             <li @click="pushTo('#tarifs')">Les prix</li>
             <li>Contacts:</li>
-            <li><a href="tel:+33753541350" target="_blank"
-                   class="cursor-pointer hover:text-cream font-bold"><span>+33 7 53 54 13 50</span></a></li>
+            <li><a :href="`tel:${contacts.number}`" target="_blank"
+                   class="cursor-pointer hover:text-cream font-bold"><span>{{ contacts.number }}</span></a></li>
             <li>
               <a
                 href="https://www.google.com/maps/place/19+Rue+Dor%C3%A9e,+30000+N%C3%AEmes,+%D0%A4%D1%80%D0%B0%D0%BD%D1%86%D0%B8%D1%8F/@43.8374511,4.3592573,17z/data=!3m1!4b1!4m6!3m5!1s0x12b42d0c08888117:0x83717f9a9004a3db!8m2!3d43.8374511!4d4.3618322!16s%2Fg%2F11c43tfcf6?entry=ttu"
                 target="_blank"
-              >19
-                rue Dorée
-                <br>
-                30000 Nimes
-                <br>
-                (Uniquement sur rdv!)</a>
+              >{{
+                  contacts.address
+                }}</a>
             </li>
           </ul>
         </div>
@@ -183,7 +180,6 @@
       </a>
       </div>
       <span class="md:text-base text-sm ">© 2023 Studio de maquillage permanent<br class="block md:hidden"> Elvira Beaty</span>
-
     </footer>
 
     <modal name="application" :adaptive="true" height="auto" :scrollable="true">
