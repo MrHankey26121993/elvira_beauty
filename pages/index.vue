@@ -17,17 +17,15 @@
           </ul>
         </div>
         <div class="gap-4 hidden md:flex items-center">
-          <a href="tel:+33753541350"
-             class="cursor-pointer hover:text-cream font-bold"><span>+33 7 53 54 13 50</span></a>
+          <a :href="`tel:${contacts.number}`"
+             class="cursor-pointer hover:text-cream font-bold"><span>{{ contacts.number }}</span></a>
           <a
             href="https://www.google.com/maps/place/19+Rue+Dor%C3%A9e,+30000+N%C3%AEmes,+%D0%A4%D1%80%D0%B0%D0%BD%D1%86%D0%B8%D1%8F/@43.8374511,4.3592573,17z/data=!3m1!4b1!4m6!3m5!1s0x12b42d0c08888117:0x83717f9a9004a3db!8m2!3d43.8374511!4d4.3618322!16s%2Fg%2F11c43tfcf6?entry=ttu"
             target="_blank"
             class="cursor-pointer hover:text-cream font-bold text-sm"
-          >19 rue Dorée
-            <br>
-            30000 Nimes
-            <br>
-            (Uniquement sur rdv!)</a>
+          >{{
+              contacts.address
+            }}</a>
           <button @click="openModalApp('application')"
                   class="bg-cream-light hover:bg-cream text-white px-4 py-3 font-bold uppercase tracking-widest">Être
             rappelé
@@ -174,8 +172,18 @@
       </div>
     </section>
 
-    <footer class="py-12 px-6 text-center md:text-left">
+    <footer class="py-12 px-6 text-center md:text-left flex flex-col md:flex-row items-center">
+      <div class="grow flex md:text-base text-sm items-center" >
+        <span> Suivez nous:</span>
+
+        <a :href="contacts.fc_link" target="_blank">
+        <fb></fb>
+      </a><a :href="contacts.inst_link" target="_blank">
+        <inst></inst>
+      </a>
+      </div>
       <span class="md:text-base text-sm ">© 2023 Studio de maquillage permanent<br class="block md:hidden"> Elvira Beaty</span>
+
     </footer>
 
     <modal name="application" :adaptive="true" height="auto" :scrollable="true">
@@ -251,9 +259,11 @@ import 'vue-slick-carousel/dist/vue-slick-carousel.css'
 import 'vue-slick-carousel/dist/vue-slick-carousel-theme.css'
 import Price from "@/components/price.vue";
 import VClamp from '@boyuai/vue-clamp'
+import Fb from "@/components/svg/fb.vue";
+import Inst from "@/components/svg/inst.vue";
 
 export default {
-  components: {Price, VClamp},
+  components: {Inst, Fb, Price, VClamp},
   mounted() {
     if (process.client) {
       let ScrollTrigger = this.$ScrollTrigger;
@@ -416,15 +426,15 @@ export default {
   },
 
   async asyncData({$axios}) {
-    let service, slides, works;
+    let service, slides, works, contacts;
     await $axios.get('/data/content').then(resp => {
       service = resp.data.service
       slides = resp.data.slides
       works = resp.data.works
-      console.log(service)
+      contacts = resp.data.contacts
     });
     return {
-      service: service, slides: slides, works: works
+      service: service, slides: slides, works: works, contacts: contacts
     }
   },
   methods: {

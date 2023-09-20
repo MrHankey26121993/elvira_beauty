@@ -17,17 +17,14 @@
           </ul>
         </div>
         <div class="gap-4 hidden md:flex items-center">
-          <a href="tel:+33753541350"
-             class="cursor-pointer hover:text-cream font-bold"><span>+33 7 53 54 13 50</span></a>
+          <a :href="`tel:${contacts.number}`"
+             class="cursor-pointer hover:text-cream font-bold"><span>{{contacts.number}}</span></a>
           <a
             href="https://www.google.com/maps/place/19+Rue+Dor%C3%A9e,+30000+N%C3%AEmes,+%D0%A4%D1%80%D0%B0%D0%BD%D1%86%D0%B8%D1%8F/@43.8374511,4.3592573,17z/data=!3m1!4b1!4m6!3m5!1s0x12b42d0c08888117:0x83717f9a9004a3db!8m2!3d43.8374511!4d4.3618322!16s%2Fg%2F11c43tfcf6?entry=ttu"
             target="_blank"
             class="cursor-pointer hover:text-cream font-bold text-sm"
-          >19 rue Dorée
-            <br>
-            30000 Nimes
-            <br>
-            (Uniquement sur rdv!)</a>
+          >{{
+              contacts.address}}</a>
           <button @click="openModalApp('application')"
                   class="bg-cream-light hover:bg-cream text-white px-4 py-3 font-bold uppercase tracking-widest">Être
             rappelé
