@@ -81,7 +81,7 @@ export default {
   /*
   ** Nuxt.js modules
   */
-  modules: ['@nuxtjs/axios', '@nuxtjs/auth-next',],
+  modules: ['@nuxtjs/axios', '@nuxtjs/auth-next', '@nuxtjs/gtm'],
   /*
   ** Build configuration
   */
@@ -105,6 +105,7 @@ export default {
   gtm: {
     id: 'G-355K9CC0PT'
   },
+
 
   auth: {
     redirect: {
