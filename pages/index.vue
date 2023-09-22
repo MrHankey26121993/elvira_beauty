@@ -529,8 +529,9 @@ export default {
   data() {
     return {
       settingsPhoto: {
-        arrows: true,
+        arrows: false,
         dots: true,
+        "dotsClass": "slick-dots custom-dot-class",
         slidesToShow: 4,
         slidesToScroll: 1,
         "responsive": [

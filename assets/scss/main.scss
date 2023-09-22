@@ -289,6 +289,9 @@
     display: flex !important;
     gap: 1rem;
   }
+  .custom-dot-class {
+    bottom: -1rem !important;
+  }
 }
 
 @media (max-width: 766px) {
@@ -296,6 +299,8 @@
     min-height: 50vh;
   }
 }
+
+
 
 /* width */
 ::-webkit-scrollbar {
