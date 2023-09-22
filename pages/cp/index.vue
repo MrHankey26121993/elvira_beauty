@@ -18,13 +18,13 @@
             <button class="p-2 bg-rose-50 border-gray border rounded-full" @click="deleteData('slide', slide.id, key)">
               <remove/>
             </button>
-
           </p>
-          <div class="col-span-3 md:col-span-1">
-            <button class="p-2 bg-green-100 border-gray border mb-4" @click="saveText(key)">
-              Сохранить
-            </button>
-            <Vueditor :ref="'slide'"></Vueditor>
+          <div class="col-span-3 md:col-span-1 h-1/3 overflow-auto  p-4 border rounded-xl">
+            <div class="overflow-hidden">
+              <div class=" " v-html="slide.description"></div>
+            </div>
+
+
 
           </div>
           <div class="col-span-3 md:col-span-1">
@@ -104,7 +104,55 @@
       </template>
     </div>
 
-    <modal name="slide" height="auto" :width="$src.isMobile() ? '100%' : '600px'">
+    <div class="grid md:grid-cols-3 gap-4 mb-4">
+
+      <div class="col-span-3 flex gap-4">
+        <p class="text-xl col-span-2 font-bold">Контакты</p>
+        <button class="p-2 bg-cyan-50 border-gray border rounded-full" @click="openEditContacts()">
+          <edit/>
+        </button>
+      </div>
+
+        <div class="col-span-1 border border-gray rounded-xl p-4 cursor-default flex flex-col gap-4">
+
+          <div>
+            <div class="font-bold">
+              Номер:
+            </div>
+            <div>
+              {{ contacts.number }}
+            </div>
+          </div>
+          <div>
+            <div class="font-bold">
+              Адрес:
+            </div>
+            <div>
+              {{ contacts.address }}
+            </div>
+          </div>
+          <div>
+            <div class="font-bold">
+              Facebook:
+            </div>
+            <div>
+              {{ contacts.fc_link }}
+            </div>
+          </div>
+          <div>
+            <div class="font-bold">
+              Номер:
+            </div>
+            <div>
+              {{ contacts.inst_link }}
+            </div>
+          </div>
+
+        </div>
+
+    </div>
+
+    <modal name="slide" height="auto" scrollable :width="$src.isMobile() ? '100%' : '600px'">
       <div class="flex flex-col gap-4 p-4">
         <h1 class="text-xl font-bold">Новый слайд</h1>
         <div class="grid grid-cols-5">
@@ -112,6 +160,10 @@
           <input type="number" v-model="slide.order"
                  class="appearance-none border border-gray rounded px-2 md:col-span-3 col-span-5">
         </div>
+        <div>
+          <Vueditor :ref="'slide'"></Vueditor>
+        </div>
+
         <div class="grid grid-cols-2">
 
           <div class="col-span-1">Слайд для компютера
@@ -133,7 +185,9 @@
 
 
         <div class="flex justify-center">
+          <button class="bg-rose-300-300 px-3 py-1 rounded" @click="$modal.hide('slide')">Отмена</button>
           <button class="bg-blue-300 px-3 py-1 rounded" @click="pushSlide()">Создать</button>
+
         </div>
       </div>
     </modal>
@@ -190,6 +244,44 @@
         </div>
       </div>
     </modal>
+    <modal name="contacts" height="auto" :width="$src.isMobile() ? '100%' : '600px'">
+      <div class="flex flex-col gap-4 p-4">
+        <h1 class="text-xl font-bold">
+          Редактировать контакты
+        </h1>
+        <div class="grid grid-cols-5">
+          <label class="md:col-span-2 col-span-5">Номер</label>
+          <input v-model="editContact.number"
+                 class="appearance-none border border-gray rounded px-2 md:col-span-3 col-span-5"
+                 type="text">
+        </div>
+        <div class="grid grid-cols-5">
+          <label class="md:col-span-2 col-span-5">Адрес</label>
+          <input v-model="editContact.address"
+                 class="appearance-none border border-gray rounded px-2 md:col-span-3 col-span-5"
+                 type="text">
+        </div>
+
+        <div class="grid grid-cols-5">
+          <label class="md:col-span-2 col-span-5">Facebook</label>
+          <input v-model="editContact.fc_link"
+                 class="appearance-none border border-gray rounded px-2 md:col-span-3 col-span-5"
+                 type="text">
+        </div>
+        <div class="grid grid-cols-5">
+          <label class="md:col-span-2 col-span-5">Instagram</label>
+          <input v-model="editContact.inst_link"
+                 class="appearance-none border border-gray rounded px-2 md:col-span-3 col-span-5"
+                 type="text">
+        </div>
+
+        <div class="flex justify-center">
+          <button class="bg-blue-300 px-3 py-1 rounded" @click="pushContacts()">
+           Сохранить
+          </button>
+        </div>
+      </div>
+    </modal>
     <modal name="works">
       <div>
         <div>
@@ -238,6 +330,7 @@ import Add from "~/components/svg/add.vue";
 import Remove from "~/components/svg/remove.vue";
 import Price from "@/components/price.vue";
 import Edit from "@/components/svg/edit.vue";
+import {content} from "../../tailwind.config";
 
 class Slide {
   title = null
@@ -262,20 +355,28 @@ class PriceModel {
   price = null
 }
 
+class Contact {
+  number = null
+  address = null
+  fc_link = null
+  inst_link = null
+}
+
 export default {
   name: "index",
   components: {Edit, Price, Remove, Add},
   layout: 'admin',
   middleware: 'auth',
   async asyncData({$axios}) {
-    let service, slides, works;
+    let service, slides, works, contacts;
     await $axios.get('/data/content').then(resp => {
       service = resp.data.service
       slides = resp.data.slides
       works = resp.data.works
+      contacts = resp.data.contacts
     });
     return {
-      service: service, slides: slides, works: works,
+      service: service, slides: slides, works: works, contacts: contacts,
     }
   },
   data() {
@@ -287,12 +388,20 @@ export default {
       deleteId: null,
       deleteType: null,
       deleteKey: null,
+      editContact: new Contact(),
     }
   },
   methods: {
+    content() {
+      return content
+    },
     openAddWorks() {
       this.work = new Work();
       this.$modal.show('works')
+    },
+    openEditContacts() {
+      this.editContact = JSON.parse(JSON.stringify(this.contacts));
+      this.$modal.show('contacts')
     },
     editWork(work) {
       this.work = JSON.parse(JSON.stringify(work))
@@ -300,7 +409,13 @@ export default {
     },
     editSlide(slide) {
       this.slide = JSON.parse(JSON.stringify(slide));
+
       this.$modal.show('slide')
+      setTimeout(() => {
+        this.$refs['slide'].setContent(this.slide.description)
+      }, 500)
+
+
     },
     editService(service) {
       this.serviceModel = JSON.parse(JSON.stringify(service));
@@ -368,6 +483,14 @@ export default {
       }).finally(() => {
         this.$modal.hide('works')
         this.work = new Service();
+      });
+    },
+    pushContacts() {
+      this.$axios.post('data/contacts', this.editContact).then(resp => {
+        this.contacts = resp.data;
+      }).finally(() => {
+        this.$modal.hide('contacts')
+        this.editContact = new Contact();
       });
     },
     selectFile(type) {
@@ -491,12 +614,7 @@ export default {
 
   },
   mounted() {
-    this.$refs['slide'].forEach((editor, key) => {
-      if(this.slides[key].description) {
-        this.$refs['slide'][key].setContent(this.slides[key].description)
-      }
-     console.log(editor.getContent())
-    })
+
   }
 }
 </script>
