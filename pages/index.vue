@@ -93,7 +93,7 @@
         <div class="relative">
           <img src="/img/service.webp" class="brightness-[0.92] h-auto hidden md:block appearance-none black_image_list"
                alt="">
-          <div class="black_block_list flex flex-col p-16 -top-4">
+          <div class="black_block_list right flex flex-col top-0">
             <template v-for="serviceData in service">
               <div class="list_item flex-wrap">
                 <div class="list_item__data" @click="openCollapse(serviceData.id)">
@@ -276,28 +276,20 @@ export default {
 
       //Услуги
       if (!this.$src.isMobile()) {
-        this.$gsap.to(".black_block_list", {
-          yPercent: 25,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".black_image_list",
-            // start: "top bottom", // the default values
-            end: "bottom top",
-            scrub: true,
-            width: 0,
-          },
-        });
 
-        this.$gsap.to(".black_block_list", {
-          yPercent: 50,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".section-main__left",
-            // start: "top bottom", // the default values
-            end: "bottom top",
-            scrub: true,
-          },
-        });
+        this.$gsap.utils.toArray(".black_block_list").forEach(function (elem) {
+          ths.hide(elem);
+          ScrollTrigger.create({
+            trigger: elem,
+            markers: false,
+            onEnter: function () {
+              ths.animateFrom(elem)
+            },
+            onEnterBack: function () {
+              ths.animateFrom(elem, -1)
+            },
+          })
+        })
 
       }
 
@@ -437,13 +429,13 @@ export default {
       if (elem.classList.contains("right")) {
         x = 500;
       }
-      let y = 0;
+      let y =  elem.classList.contains('black_block_list') ? '-50%' : 0;
       elem.style.transform = "translate(" + x + "px, " + y + "px)";
       elem.style.opacity = "0";
       this.$gsap.fromTo(elem, {x: x, y: y, opacity: 0, autoAlpha: 0}, {
         duration: 1.25,
         x: 0,
-        y: 0,
+        y: elem.classList.contains('black_block_list') ? '-50%' : 0,
         opacity: 1,
         autoAlpha: 1,
         ease: "expo",
